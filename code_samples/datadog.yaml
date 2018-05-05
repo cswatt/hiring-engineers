@@ -1,0 +1,7 @@
+dd_url: https://app.datadoghq.com
+api_key: 
+
+tags:
+  - tag1
+  - tag2
+  - tag3

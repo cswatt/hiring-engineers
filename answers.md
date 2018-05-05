@@ -3,7 +3,7 @@ I had initially planned on using a nice Docker/Vagrant setup, but as I progresse
 
 # Collecting Metrics
 ## Adding tags
-In `/opt/datadog-agent/etc`, I configured the file `datadog.yaml` to include the following snippet:
+In `/opt/datadog-agent/etc`, I configured the file [`datadog.yaml`](code_samples/datadog.yaml) to include the following snippet:
 
 ![tags in config](img/01-tags_conf.png)
 
@@ -33,7 +33,7 @@ I have included my postgres config file, [`conf.yaml`](code_samples/conf.yaml).
 
 ## Creating a custom agent check and setting collection interval
 
-I added `my_metric.py` and `my_metric.yaml` to the `/opt/datadog-agent/etc/checks.d` and `/opt/datadog-agent/etc/conf.d` folders, respectively. For greater configurability, instead of hardcoding the range [0, 1000] into the check, the instance has configurable variables `floor` and `ceiling`. I then set `min_collection_interval` to 45.
+I added [`my_metric.py`](code_samples/my_metric.py) and [`my_metric.yaml`](code_samples/my_metric.yaml) to the `/opt/datadog-agent/etc/checks.d` and `/opt/datadog-agent/etc/conf.d` folders, respectively. For greater configurability, instead of hardcoding the range [0, 1000] into the check, the instance has configurable variables `floor` and `ceiling`. I then set `min_collection_interval` to 45.
 
 
 ```
@@ -52,16 +52,16 @@ Using Agent 5, it appears you can set `check_freq` in the agent config file. Thi
 
 # Visualizing Data
 ## Creating a Timeboard via API
-`create_timeboard.py` uses the Datadog API to create a timeboard called My Fun Timeboard, because I give things terrible names.
+[`create_timeboard.py`](code_samples/create_timeboard.py) uses the Datadog API to create a timeboard called My Fun Timeboard, because I give things terrible names.
 
 I opted to use the `postgresql.rows_fetched` metric (with the anomaly function applied), scoped over all the databases I’ve got on my machine from various past projects.
 
 ## Using the Dashboard UI
-Here’s what the timeboard looks like by default.
-
 Here’s the timeboard after the timeframe is set to the past 5 minutes.
+![timeboard](img/03-timeboard.png)
 
 Here’s a cool email I received!
+![timeboard alert](img/04-timeboard_alert.png)
 
 ### Bonus Question: Anomaly Graph
 The anomaly graph is the anomaly function applied to `postgresql.rows_fetched{*}`, which is the number of rows fetched across all postgres databases — plus an expected range for how this metric should behave. I used the basic anomaly detection algorithm with `bounds = 2`. The line displays in red when it falls outside the “normal” range expected by the algorithm.
