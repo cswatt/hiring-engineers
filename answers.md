@@ -1,5 +1,3 @@
-Answers and notes
-
 # Prerequisites
 I had initially planned on using a nice Docker/Vagrant setup, but as I progressed, I found that the documentation for using the Datadog agent in Mac OS was a bit clearer. For instance, the Docker documentation is vague on the location of the agent config file. After running into this, comparing the Docker documentation with the Mac OS documentation, I decided to go ahead with a direct installation of the Datadog agent on my Mac OS system. The following answers reflect this environment.
 
@@ -7,14 +5,13 @@ I had initially planned on using a nice Docker/Vagrant setup, but as I progresse
 ## Adding tags
 In `/opt/datadog-agent/etc`, I configured the file `datadog.yaml` to include the following snippet:
 
-```
-tags:
-  - tag1
-  - tag2
-  - tag3
-```
+![tags in config]
+(https://github.com/cswatt/hiring-engineers/raw/tech-writer/img/01-tags_conf.png)
 
 These uncreatively named tags can then be seen on the Host Map page.
+
+![tags in ui]
+(https://github.com/cswatt/hiring-engineers/raw/tech-writer/img/02-tags_ui.png)
 
 ## Installing a database integration
 Since PostgreSQL was already installed on my machine, I chose to install the PostgreSQL integration. When trying to verify permissions, I encountered the following error in the documentation:
@@ -34,7 +31,7 @@ psql -h localhost -U datadog postgres -c \
 || echo -e "\e[0;31mCannot connect to Postgres\e[0m"
 ```
 
-I have included my postgres config file, `postgres.d/conf.yaml`.
+I have included my postgres config file, [`conf.yaml`](code_samples/conf.yaml).
 
 ## Creating a custom agent check and setting collection interval
 

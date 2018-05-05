@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+  - floor: 0
+    ceiling: 1000
+    min_collection_interval: 45
