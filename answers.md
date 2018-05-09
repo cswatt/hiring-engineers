@@ -52,7 +52,7 @@ Using Agent 5, it appears you can set `check_freq` in the agent config file. Thi
 
 # Visualizing Data
 ## Creating a Timeboard via API
-[`create_timeboard.py`](code_samples/create_timeboard.py) uses the Datadog API to create a timeboard called My Fun Timeboard, because I give things terrible names.
+[`create_timeboard.py`](code_samples/create_timeboard.py) uses the Datadog API to create a timeboard called [My Fun Timeboard](https://app.datadoghq.com/dash/804035/my-fun-timeboard), because I give things terrible names. 
 
 I opted to use the `postgresql.rows_fetched` metric (with the anomaly function applied), scoped over all the databases I’ve got on my machine from various past projects.
 
